@@ -1,4 +1,4 @@
-﻿; Created by https://github.com/ourgta
+; Created by https://github.com/ourgta
 ; Repository https://github.com/ourgta/Mission-Downloader
 
 #Requires AutoHotkey v2.0-beta
@@ -53,6 +53,7 @@ ButtonClick(*)
 
     my_gui.Opt("-Disabled")
     download_gui.Destroy
+    MsgBox "Download complete!"
 }
 
 my_gui.Show
