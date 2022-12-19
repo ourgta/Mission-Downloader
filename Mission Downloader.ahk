@@ -33,7 +33,7 @@ missions := Map(
     "s1.grandtheftarma.Life.Altis.pbo", "https://drive.google.com/uc?export=download&id=1HTxI3nyOST_9Q9GbifReFbN78rHRSkBl",
 )
 
-my_gui := Gui()
+my_gui := Gui(, "Mission Downloader")
 listbox := my_gui.AddListBox("R" missions.Count " W300 0x8")
 for filename, url in missions
     listbox.Add([filename])
@@ -44,7 +44,7 @@ button.OnEvent("Click", ButtonClick)
 
 ButtonClick(*)
 {
-    download_gui := Gui()
+    download_gui := Gui("-Caption")
     download_gui.AddText("", "Downloading")
     download_gui.Show
     my_gui.Opt("Disabled")
@@ -53,7 +53,7 @@ ButtonClick(*)
 
     my_gui.Opt("-Disabled")
     download_gui.Destroy
-    MsgBox "Download complete!"
+    MsgBox "Download complete!", ""
 }
 
 my_gui.Show
