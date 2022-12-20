@@ -63,6 +63,11 @@ DownloadButtonClick(*)
     download_gui := Gui("-Caption")
     download_gui.AddText("", "Downloading")
     download_gui.Show()
+
+    my_gui.GetPos(&parentX, &parentY, &parentWidth, &parentHeight)
+    download_gui.GetPos(,, &width, &height)
+    download_gui.Move(parentX + ((parentWidth - width) // 2), parentY + ((parentHeight - height) // 2))
+
     my_gui.Opt("Disabled")
     for filename in listbox.Text
         Download(missions[filename], A_LocalAppData "\Arma 3\MPMissionsCache\" filename)
