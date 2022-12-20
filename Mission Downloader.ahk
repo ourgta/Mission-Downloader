@@ -14,6 +14,7 @@ if not A_IsCompiled
     TraySetIcon("Icon.ico")
 
 A_LocalAppData := EnvGet("LOCALAPPDATA")
+A_ScriptPid := DllCall("GetCurrentProcessId")
 
 missions := Map(
     "events.grandtheftarma.Conflict.Altis.pbo", "https://drive.google.com/uc?export=download&id=1U9dMSqgc6eqnYuoQR-pVNLh1Eq8bY-rF",
@@ -64,9 +65,9 @@ DownloadButtonClick(*)
     download_gui.AddText("", "Downloading")
     download_gui.Show()
 
-    my_gui.GetPos(&parentX, &parentY, &parentWidth, &parentHeight)
-    download_gui.GetPos(,, &width, &height)
-    download_gui.Move(parentX + ((parentWidth - width) // 2), parentY + ((parentHeight - height) // 2))
+    my_gui.GetPos(&my_gui_x, &my_gui_y, &my_gui_width, &my_gui_height)
+    download_gui.GetPos(,, &download_gui_width, &download_gui_height)
+    download_gui.Move(my_gui_x + ((my_gui_width - download_gui_width) // 2), my_gui_y + ((my_gui_height - download_gui_height) // 2))
 
     my_gui.Opt("Disabled")
     for filename in listbox.Text
@@ -74,6 +75,7 @@ DownloadButtonClick(*)
 
     my_gui.Opt("-Disabled")
     download_gui.Destroy()
+
     MsgBox("Download complete!", "")
 }
 
