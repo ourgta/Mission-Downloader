@@ -61,7 +61,7 @@ SelectNoneButtonClick(*)
 
 DownloadButtonClick(*)
 {
-    download_gui := Gui("-Caption")
+    download_gui := Gui("-Caption +Owner" my_gui.Hwnd)
     download_gui.AddText("", "Downloading")
     download_gui.Show()
 
@@ -73,10 +73,22 @@ DownloadButtonClick(*)
     for filename in listbox.Text
         Download(missions[filename], A_LocalAppData "\Arma 3\MPMissionsCache\" filename)
 
-    my_gui.Opt("-Disabled")
+    complete_gui := Gui("-Caption +Owner" my_gui.Hwnd)
+    complete_gui.AddText("", "Download complete!")
+    continue_button := complete_gui.AddButton("", "Continue")
+    continue_button.OnEvent("Click", Destroy)
+
+    complete_gui.Show()
     download_gui.Destroy()
 
-    MsgBox("Download complete!", "")
+    complete_gui.GetPos(,, &complete_gui_width, &complete_gui_height)
+    complete_gui.Move(my_gui_x + ((my_gui_width - complete_gui_width) // 2), my_gui_y + ((my_gui_height - complete_gui_height) // 2))
+
+    Destroy(*)
+    {
+        my_gui.Opt("-Disabled")
+        complete_gui.Destroy()
+    }
 }
 
 my_gui.Show()
