@@ -14,7 +14,6 @@ if not A_IsCompiled
     TraySetIcon("Icon.ico")
 
 A_LocalAppData := EnvGet("LOCALAPPDATA")
-A_ScriptPid := DllCall("GetCurrentProcessId")
 
 missions := Map(
     "events.grandtheftarma.Conflict.Altis.pbo", "https://drive.google.com/uc?export=download&id=1U9dMSqgc6eqnYuoQR-pVNLh1Eq8bY-rF",
