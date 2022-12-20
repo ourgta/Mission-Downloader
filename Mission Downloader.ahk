@@ -11,7 +11,7 @@
 ;@Ahk2Exe-SetMainIcon Icon.ico
 
 if not A_IsCompiled
-    TraySetIcon "Icon.ico"
+    TraySetIcon("Icon.ico")
 
 A_LocalAppData := EnvGet("LOCALAPPDATA")
 
@@ -39,21 +39,37 @@ for filename, url in missions
     listbox.Add([filename])
 listbox.Choose(15)
 
-button := my_gui.AddButton("", "Download")
-button.OnEvent("Click", ButtonClick)
+select_all_button := my_gui.AddButton("W147", "Select all")
+select_all_button.OnEvent("Click", SelectAllButtonClick)
+select_none_button := my_gui.AddButton("yp W147", "Select none")
+select_none_button.OnEvent("Click", SelectNoneButtonClick)
 
-ButtonClick(*)
+download_button := my_gui.AddButton("xm W300", "Download")
+download_button.OnEvent("Click", DownloadButtonClick)
+
+SelectAllButtonClick(*)
+{
+    Loop missions.Count
+        listbox.Choose(A_Index)
+}
+
+SelectNoneButtonClick(*)
+{
+    listbox.Choose(0)
+}
+
+DownloadButtonClick(*)
 {
     download_gui := Gui("-Caption")
     download_gui.AddText("", "Downloading")
-    download_gui.Show
+    download_gui.Show()
     my_gui.Opt("Disabled")
     for filename in listbox.Text
-        Download missions[filename], A_LocalAppData "\Arma 3\MPMissionsCache\" filename
+        Download(missions[filename], A_LocalAppData "\Arma 3\MPMissionsCache\" filename)
 
     my_gui.Opt("-Disabled")
-    download_gui.Destroy
-    MsgBox "Download complete!", ""
+    download_gui.Destroy()
+    MsgBox("Download complete!", "")
 }
 
-my_gui.Show
+my_gui.Show()
