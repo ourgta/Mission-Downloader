@@ -63,7 +63,7 @@ DownloadButtonClick(*)
 {
     download_gui := Gui("-Caption +Owner" my_gui.Hwnd)
     download_gui.AddText("", "Downloading")
-    download_gui.Show()
+    download_gui.Show("NA")
 
     my_gui.GetPos(&my_gui_x, &my_gui_y, &my_gui_width, &my_gui_height)
     download_gui.GetPos(,, &download_gui_width, &download_gui_height)
@@ -78,7 +78,7 @@ DownloadButtonClick(*)
     continue_button := complete_gui.AddButton("", "Continue")
     continue_button.OnEvent("Click", Destroy)
 
-    complete_gui.Show()
+    complete_gui.Show("NA")
     download_gui.Destroy()
 
     complete_gui.GetPos(,, &complete_gui_width, &complete_gui_height)
