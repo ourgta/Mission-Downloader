@@ -6,4 +6,4 @@ Download and update grandtheftarma.com mission files
 ## Pictures
 ![](Pictures/Main.png)\
 ![](Pictures/Downloading.png)\
-![](Pictures/Complete.png)\
+![](Pictures/Complete.png)
